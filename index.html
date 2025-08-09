@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Substitute Assignment Process Questionnaire</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Use the Inter font family */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* A slightly different gray for the body */
+        }
+        /* Custom focus styles for better accessibility */
+        .form-input:focus, .form-radio:focus, .form-select:focus {
+            outline: 2px solid transparent;
+            outline-offset: 2px;
+            --tw-ring-color: #5A4FCF; /* Intelligent Purple */
+            box-shadow: 0 0 0 2px var(--tw-ring-color);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto max-w-4xl py-4 px-6">
+            <h1 class="text-xl font-bold text-purple-800">Private & Public School Substitute Scheduling Survey</h1>
+            <p class="text-m text-gray-600">This survey can be completed Anonymously - you are not being tracked by the creator of this form.</p>
+                        <p class="text-sm mt-2"> You can access the results of this survey by entering your email address in the form, or by emailing: <a href="mailto:beerspitnight@gmail.com" class="text-purple-600 hover:underline">beerspitnight@gmail.com</a></p>
+
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-8 sm:py-12">
+        <div class="container mx-auto max-w-2xl p-4 sm:p-0">
+            <div class="bg-white rounded-2xl shadow-lg p-6 sm:p-8">
+                <!-- Form Header -->
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-800">Substitute Assignment Process Questionnaire</h2>
+                    <p class="mt-2 text-gray-600">Your feedback will help identify best practices and challenges in daily school operations.</p>
+                </div>
+
+                <!-- Formspree Form -->
+                <form action="https://formspree.io/f/xwpqalao" method="POST">
+                    
+                    <!-- Section 1: School Profile -->
+                    <fieldset class="mb-8">
+                        <legend class="text-xl font-semibold text-gray-700 border-b-2 border-purple-200 pb-2 mb-6 w-full">Section 1: School Profile</legend>
+                        
+                        <div class="mb-6">
+                            <label for="state" class="block text-sm font-medium text-gray-700 mb-2">1. State</label>
+                            <select id="state" name="state" required class="form-select block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm transition duration-150">
+                                <option value="" disabled selected>Select a State</option>
+                                <option value="AL">Alabama</option>
+                                <option value="AK">Alaska</option>
+                                <option value="AZ">Arizona</option>
+                                <option value="AR">Arkansas</option>
+                                <option value="CA">California</option>
+                                <option value="CO">Colorado</option>
+                                <option value="CT">Connecticut</option>
+                                <option value="DE">Delaware</option>
+                                <option value="DC">District Of Columbia</option>
+                                <option value="FL">Florida</option>
+                                <option value="GA">Georgia</option>
+                                <option value="HI">Hawaii</option>
+                                <option value="ID">Idaho</option>
+                                <option value="IL">Illinois</option>
+                                <option value="IN">Indiana</option>
+                                <option value="IA">Iowa</option>
+                                <option value="KS">Kansas</option>
+                                <option value="KY">Kentucky</option>
+                                <option value="LA">Louisiana</option>
+                                <option value="ME">Maine</option>
+                                <option value="MD">Maryland</option>
+                                <option value="MA">Massachusetts</option>
+                                <option value="MI">Michigan</option>
+                                <option value="MN">Minnesota</option>
+                                <option value="MS">Mississippi</option>
+                                <option value="MO">Missouri</option>
+                                <option value="MT">Montana</option>
+                                <option value="NE">Nebraska</option>
+                                <option value="NV">Nevada</option>
+                                <option value="NH">New Hampshire</option>
+                                <option value="NJ">New Jersey</option>
+                                <option value="NM">New Mexico</option>
+                                <option value="NY">New York</option>
+                                <option value="NC">North Carolina</option>
+                                <option value="ND">North Dakota</option>
+                                <option value="OH">Ohio</option>
+                                <option value="OK">Oklahoma</option>
+                                <option value="OR">Oregon</option>
+                                <option value="PA">Pennsylvania</option>
+                                <option value="RI">Rhode Island</option>
+                                <option value="SC">South Carolina</option>
+                                <option value="SD">South Dakota</option>
+                                <option value="TN">Tennessee</option>
+                                <option value="TX">Texas</option>
+                                <option value="UT">Utah</option>
+                                <option value="VT">Vermont</option>
+                                <option value="VA">Virginia</option>
+                                <option value="WA">Washington</option>
+                                <option value="WV">West Virginia</option>
+                                <option value="WI">Wisconsin</option>
+                                <option value="WY">Wyoming</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">2. School Level</label>
+                            <div class="space-y-2">
+                                <div class="flex items-center"><input id="level-elementary" name="school_level" type="radio" value="Elementary" class="form-radio h-4 w-4 text-purple-600 border-gray-300 focus:ring-purple-500 transition duration-150"><label for="level-elementary" class="ml-3 block text-sm text-gray-700">Elementary School</label></div>
+                                <div class="flex items-center"><input id="level-middle" name="school_level" type="radio" value="Middle" class="form-radio h-4 w-4 text-purple-600 border-gray-300 focus:ring-purple-500 transition duration-150"><label for="level-middle" class="ml-3 block text-sm text-gray-700">Middle School</label></div>
+                                <div class="flex items-center"><input id="level-high" name="school_level" type="radio" value="High" class="form-radio h-4 w-4 text-purple-600 border-gray-300 focus:ring-purple-500 transition duration-150"><label for="level-high" class="ml-3 block text-sm text-gray-700">High School</label></div>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="student-count" class="block text-sm font-medium text-gray-700 mb-2">3. Approximate number of students</label>
+                            <input type="number" name="student_count" id="student-count" class="form-input block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm transition duration-150">
+                        </div>
+
+                        <div>
+                            <label for="teacher-count" class="block text-sm font-medium text-gray-700 mb-2">4. Approximate number of teachers</label>
+                            <input type="number" name="teacher_count" id="teacher-count" class="form-input block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm transition duration-150">
+                        </div>
+                    </fieldset>
+
+                    <!-- Section 2: Systems & Resources -->
+                    <fieldset class="mb-8">
+                        <legend class="text-xl font-semibold text-gray-700 border-b-2 border-purple-200 pb-2 mb-6 w-full">Section 2: Systems & Resources</legend>
+                        
+                        <div class="mb-6">
+                            <label for="absence-system" class="block text-sm font-medium text-gray-700 mb-2">5. Teacher Absence Management System (e.g., Genesis, Frontline)</label>
+                            <input type="text" name="absence_management_system" id="absence-system" class="form-input block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm transition duration-150">
+                        </div>
+
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">6. Substitute Sourcing</label>
+                            <div class="space-y-2">
+                                <div class="flex items-center"><input id="sourcing-external" name="substitute_sourcing" type="radio" value="External Service" class="form-radio h-4 w-4 text-purple-600 border-gray-300 focus:ring-purple-500 transition duration-150"><label for="sourcing-external" class="ml-3 block text-sm text-gray-700">External substitute staffing service</label></div>
+                                <div class="flex items-center"><input id="sourcing-district" name="substitute_sourcing" type="radio" value="District Pool" class="form-radio h-4 w-4 text-purple-600 border-gray-300 focus:ring-purple-500 transition duration-150"><label for="sourcing-district" class="ml-3 block text-sm text-gray-700">District-managed pool of substitutes</label></div>
+                                <div class="flex items-center"><input id="sourcing-combo" name="substitute_sourcing" type="radio" value="Combination" class="form-radio h-4 w-4 text-purple-600 border-gray-300 focus:ring-purple-500 transition duration-150"><label for="sourcing-combo" class="ml-3 block text-sm text-gray-700">Combination of external and district</label></div>
+                                <div class="flex items-center"><input id="sourcing-building" name="substitute_sourcing" type="radio" value="Building List" class="form-radio h-4 w-4 text-purple-600 border-gray-300 focus:ring-purple-500 transition duration-150"><label for="sourcing-building" class="ml-3 block text-sm text-gray-700">Building-specific list of substitutes</label></div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">7. Internal Coverage (Teachers covering during prep/duty)</label>
+                            <div class="space-y-2">
+                                <div class="flex items-center"><input id="internal-yes" name="internal_coverage" type="radio" value="Yes" class="form-radio h-4 w-4 text-purple-600 border-gray-300 focus:ring-purple-500 transition duration-150"><label for="internal-yes" class="ml-3 block text-sm text-gray-700">Yes</label></div>
+                                <div class="flex items-center"><input id="internal-no" name="internal_coverage" type="radio" value="No" class="form-radio h-4 w-4 text-purple-600 border-gray-300 focus:ring-purple-500 transition duration-150"><label for="internal-no" class="ml-3 block text-sm text-gray-700">No</label></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">8. Absence Notification System</label>
+                            <div class="space-y-2">
+                                <div class="flex items-center"><input id="notification-centralized" name="notification_system" type="radio" value="Centralized" class="form-radio h-4 w-4 text-purple-600 border-gray-300 focus:ring-purple-500 transition duration-150"><label for="notification-centralized" class="ml-3 block text-sm text-gray-700">Single, centralized system</label></div>
+                                <div class="flex items-center"><input id="notification-separate" name="notification_system" type="radio" value="Separate Locations" class="form-radio h-4 w-4 text-purple-600 border-gray-300 focus:ring-purple-500 transition duration-150"><label for="notification-separate" class="ml-3 block text-sm text-gray-700">Most in one system, some in another</label></div>
+                                <div class="flex items-center"><input id="notification-multiple" name="notification_system" type="radio" value="Multiple Systems" class="form-radio h-4 w-4 text-purple-600 border-gray-300 focus:ring-purple-500 transition duration-150"><label for="notification-multiple" class="ml-3 block text-sm text-gray-700">Tracked across multiple systems</label></div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Section 3: Daily Workflow -->
+                    <fieldset>
+                        <legend class="text-xl font-semibold text-gray-700 border-b-2 border-purple-200 pb-2 mb-6 w-full">Section 3: Daily Workflow</legend>
+                        
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">9. Primary Scheduling Method</label>
+                            <div class="space-y-2">
+                                <div class="flex items-center"><input id="method-paper" name="scheduling_method" type="radio" value="Pen and Paper" class="form-radio h-4 w-4 text-purple-600 border-gray-300 focus:ring-purple-500 transition duration-150"><label for="method-paper" class="ml-3 block text-sm text-gray-700">Pen and paper</label></div>
+                                <div class="flex items-center"><input id="method-spreadsheet" name="scheduling_method" type="radio" value="Spreadsheet" class="form-radio h-4 w-4 text-purple-600 border-gray-300 focus:ring-purple-500 transition duration-150"><label for="method-spreadsheet" class="ml-3 block text-sm text-gray-700">Spreadsheet</glabel></div>
+                                <div class="flex items-center"><input id="method-combo" name="scheduling_method" type="radio" value="Combination" class="form-radio h-4 w-4 text-purple-600 border-gray-300 focus:ring-purple-500 transition duration-150"><label for="method-combo" class="ml-3 block text-sm text-gray-700">Combination of pen/paper and spreadsheet</label></div>
+                                <div class="flex items-center"><input id="method-sis" name="scheduling_method" type="radio" value="SIS Feature" class="form-radio h-4 w-4 text-purple-600 border-gray-300 focus:ring-purple-500 transition duration-150"><label for="method-sis" class="ml-3 block text-sm text-gray-700">A feature within our SIS/software</label></div>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="time-tuesday" class="block text-sm font-medium text-gray-700 mb-2">10. On a typical Tuesday morning, how long does it take to finalize the coverage schedule?</label>
+                            <input type="text" name="time_to_complete_tuesday" id="time-tuesday" placeholder="e.g., 45 minutes" class="form-input block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm transition duration-150">
+                        </div>
+
+                        <div>
+                            <label for="time-friday" class="block text-sm font-medium text-gray-700 mb-2">11. On a typical Friday morning, how long does it take to finalize the coverage schedule?</label>
+                            <input type="text" name="time_to_complete_friday" id="time-friday" placeholder="e.g., 1 hour" class="form-input block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm transition duration-150">
+                        </div>
+                    </fieldset>
+
+                    <!-- Optional Email Field -->
+                    <div class="mt-8">
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email Address (Optional)</label>
+                        <p class="text-xs text-gray-500 mt-1 mb-2">Enter your email if you'd like to receive a copy of the survey results.</p>
+                        <input type="email" name="email" id="email" class="form-input block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm transition duration-150">
+                    </div>
+
+                    <!-- Privacy Statement -->
+                    <div class="mt-8 p-4 bg-gray-50 rounded-lg">
+                        <p class="text-xs text-gray-600">
+                            <strong>Privacy Notice:</strong> Your responses are submitted securely via Formspree and will be used for research purposes. If an email address is submitted in the form, it will only be used to share the survey results.  ALL data will be anonymized in any reports or results. If you choose to provide your email address, it will be used solely to send you a copy of the survey results and will not be shared with any third parties.
+                        </p>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="mt-10 text-right">
+                        <button type="submit" class="inline-flex justify-center py-2 px-6 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition duration-150">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white mt-8">
+        <div class="container mx-auto max-w-4xl py-6 px-6 text-center text-gray-600">
+            <p>&copy; 2025 BeerSpitNight. All Rights Reserved.</p>
+            <p class="text-sm mt-2">For questions about this survey or to receive access to the results, please contact: <a href="mailto:beerspitnight@gmail.com" class="text-purple-600 hover:underline">beerspitnight@gmail.com</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>
