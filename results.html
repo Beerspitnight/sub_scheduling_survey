@@ -125,16 +125,261 @@
     <script>
         // --- DATA PREPARATION ---
         // Raw data manually transcribed from the CSV file.
-        const rawData = [ ... ]; // Data omitted for brevity (use as provided in prior message)
+        const rawData = [
+            {ams: 'Genesis', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'External Service', teachers: 2, time_fri: '60', time_tue: '30 minutes'},
+            {ams: null, scheduling: 'Combination', level: 'Middle', sourcing: 'District Pool', teachers: 40, time_fri: '1.5 hours', time_tue: '50 minutes'},
+            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 225, time_fri: '15 minutes', time_tue: '15 minutes'},
+            {ams: 'AESOP', scheduling: 'Spreadsheet', level: 'Middle', sourcing: 'District Pool', teachers: 85, time_fri: '45 minutes', time_tue: '30 minutes'},
+            {ams: 'Frontline', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 30, time_fri: '1 hour', time_tue: '35 minutes'},
+            {ams: 'AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'External Service', teachers: 50, time_fri: '1.25 hours', time_tue: '1 hour'},
+            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 180, time_fri: '25 minutes', time_tue: '20 minutes'},
+            {ams: 'Frontline', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 48, time_fri: '1 hour', time_tue: '40 minutes'},
+            {ams: 'AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'External Service', teachers: 70, time_fri: '1.25 hours', time_tue: '1 hour'},
+            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 160, time_fri: '25 minutes', time_tue: '20 minutes'},
+            {ams: 'Frontline', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 52, time_fri: '1 hour', time_tue: '35 minutes'},
+            {ams: 'AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'External Service', teachers: 68, time_fri: '1.25 hours', time_tue: '1 hour'},
+            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 150, time_fri: '25 minutes', time_tue: '20 minutes'},
+            {ams: 'Frontline', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 46, time_fri: '1 hour', time_tue: '35 minutes'},
+            {ams: 'AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'External Service', teachers: 64, time_fri: '1 hour', time_tue: '55 minutes'},
+            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 145, time_fri: '25 minutes', time_tue: '20 minutes'},
+            {ams: 'Frontline', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 44, time_fri: '1 hour', time_tue: '35 minutes'},
+            {ams: 'AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'External Service', teachers: 62, time_fri: '1 hour', time_tue: '55 minutes'},
+            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 140, time_fri: '25 minutes', time_tue: '20 minutes'},
+            {ams: 'Frontline', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 42, time_fri: '1 hour', time_tue: '35 minutes'},
+            {ams: 'AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'External Service', teachers: 61, time_fri: '1 hour', time_tue: '55 minutes'},
+            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 138, time_fri: '25 minutes', time_tue: '20 minutes'},
+            {ams: 'Frontline', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 43, time_fri: '45 minutes', time_tue: '35 minutes'},
+            {ams: 'AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'External Service', teachers: 60, time_fri: '1 hour', time_tue: '55 minutes'},
+            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 190, time_fri: '50 minutes', time_tue: '45 minutes'},
+            {ams: 'Frontline', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 54, time_fri: '45 minutes', time_tue: '35 minutes'},
+            {ams: 'AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'District Pool', teachers: 74, time_fri: '1 hour', time_tue: '55 minutes'},
+            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 1700, time_fri: '55 minutes', time_tue: '50 minutes'},
+            {ams: 'Frontline', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 56, time_fri: '45 minutes', time_tue: '35 minutes'},
+            {ams: 'AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'District Pool', teachers: 76, time_fri: '1 hour', time_tue: '55 minutes'},
+            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 1650, time_fri: '2 hours', time_tue: '1 hour'},
+            {ams: 'Frontline', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 58, time_fri: '45 minutes', time_tue: '35 minutes'},
+            {ams: 'AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'District Pool', teachers: 78, time_fri: '1 hour', time_tue: '55 minutes'},
+            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 1750, time_fri: '25 minutes', time_tue: '20 minutes'},
+            {ams: 'Frontline', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 41, time_fri: '45 minutes', time_tue: '35 minutes'},
+            {ams: 'AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'District Pool', teachers: 59, time_fri: '1 hour', time_tue: '55 minutes'},
+            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 1550, time_fri: '25 minutes', time_tue: '20 minutes'},
+            {ams: 'Frontline', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 40, time_fri: '45 minutes', time_tue: '35 minutes'},
+            {ams: 'AESOP', scheduling: 'Pen and Paper', level: 'Middle', sourcing: 'External Service', teachers: 58, time_fri: '1 hour', time_tue: '55 minutes'},
+            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 128, time_fri: '25 minutes', time_tue: '25 minutes'},
+            {ams: 'Frontline', scheduling: 'Combination', level: 'K-12', sourcing: 'District Pool', teachers: 95, time_fri: '20 minutes', time_tue: '20 minutes'}
+        ];
 
         // Helper function to parse time strings (e.g., "1.5 hours", "30 minutes") into minutes
-        function parseTime(timeStr) { ... } // Function body as provided
+        function parseTime(timeStr) {
+            if (!timeStr || typeof timeStr !== 'string') return null;
+            const time = timeStr.toLowerCase();
+            let minutes = 0;
+            if (time.includes('hour')) {
+                minutes = parseFloat(time.replace('hours', '').replace('hour', '').trim()) * 60;
+            } else if (time.includes('minute')) {
+                minutes = parseFloat(time.replace('minutes', '').replace('minute', '').trim());
+            } else {
+                minutes = parseFloat(time);
+            }
+            return isNaN(minutes) ? null : minutes;
+        }
 
         // Clean and process the raw data
-        const processedData = ... // Code as provided
+        const processedData = rawData.map(d => {
+            // Combine "Frontline" and "AESOP" as they are the same system
+            let system = d.ams;
+            if (system === 'Frontline' || system === 'AESOP') {
+                system = 'Frontline/AESOP';
+            }
+            
+            return {
+                ams: system || 'Other/Unknown',
+                scheduling: d.scheduling || 'Unknown',
+                level: d.level || 'Unknown',
+                sourcing: d.sourcing || 'Unknown',
+                teachers: parseInt(d.teachers),
+                time_fri: parseTime(d.time_fri),
+                time_tue: parseTime(d.time_tue)
+            };
+        }).filter(d => d.time_tue !== null && d.time_fri !== null && !isNaN(d.teachers)); // Filter out any rows with missing essential data
 
+        
         // --- CHART RENDERING ---
-        ... // All code as provided
+        
+        // A global variable to hold the breakdown chart instance so we can destroy it before redrawing
+        let breakdownChartInstance = null;
+        
+        // Function to calculate average times for a given category (e.g., 'ams', 'level')
+        function calculateAverages(category) {
+            const groups = {};
+            processedData.forEach(d => {
+                const key = d[category];
+                if (!groups[key]) {
+                    groups[key] = { tue: [], fri: [] };
+                }
+                groups[key].tue.push(d.time_tue);
+                groups[key].fri.push(d.time_fri);
+            });
+
+            const labels = Object.keys(groups).sort();
+            const avgTue = labels.map(label => {
+                const sum = groups[label].tue.reduce((a, b) => a + b, 0);
+                return sum / groups[label].tue.length;
+            });
+            const avgFri = labels.map(label => {
+                const sum = groups[label].fri.reduce((a, b) => a + b, 0);
+                return sum / groups[label].fri.length;
+            });
+
+            return { labels, avgTue, avgFri };
+        }
+
+        // Function to update the main breakdown chart
+        function updateBreakdownChart(category) {
+            const { labels, avgTue, avgFri } = calculateAverages(category);
+            const ctx = document.getElementById('breakdownChart').getContext('2d');
+
+            if (breakdownChartInstance) {
+                breakdownChartInstance.destroy();
+            }
+
+            breakdownChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Avg Time Tuesday (min)',
+                            data: avgTue,
+                            backgroundColor: 'rgba(59, 130, 246, 0.8)',
+                            borderColor: 'rgba(59, 130, 246, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Avg Time Friday (min)',
+                            data: avgFri,
+                            backgroundColor: 'rgba(16, 185, 129, 0.8)',
+                            borderColor: 'rgba(16, 185, 129, 1)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Average Minutes' }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.dataset.label}: ${context.parsed.y.toFixed(1)} min`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // --- Initial Chart Drawing on Page Load ---
+        window.onload = () => {
+            // Attach event listener to the dropdown
+            const breakdownSelector = document.getElementById('breakdownSelector');
+            breakdownSelector.addEventListener('change', (e) => {
+                updateBreakdownChart(e.target.value);
+            });
+
+            // Initial call to draw the breakdown chart
+            updateBreakdownChart('ams');
+
+            // --- Scatter Plot: Tuesday ---
+            const tueScatterCtx = document.getElementById('tuesdayScatterChart').getContext('2d');
+            new Chart(tueScatterCtx, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Tuesday Data',
+                        data: processedData.map(d => ({x: d.teachers, y: d.time_tue})),
+                        backgroundColor: 'rgba(59, 130, 246, 0.8)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { title: { display: true, text: 'Number of Teachers' } },
+                        y: { title: { display: true, text: 'Time in Minutes' } }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+
+            // --- Scatter Plot: Friday ---
+            const friScatterCtx = document.getElementById('fridayScatterChart').getContext('2d');
+            new Chart(friScatterCtx, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Friday Data',
+                        data: processedData.map(d => ({x: d.teachers, y: d.time_fri})),
+                        backgroundColor: 'rgba(16, 185, 129, 0.8)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { title: { display: true, text: 'Number of Teachers' } },
+                        y: { title: { display: true, text: 'Time in Minutes' } }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+            
+            // --- Original Overview Charts ---
+            const { labels: amsLabels, avgTue: amsCounts } = calculateAverages('ams');
+            const amsData = {};
+            processedData.forEach(d => amsData[d.ams] = (amsData[d.ams] || 0) + 1);
+            new Chart(document.getElementById('absenceSystemsChart').getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(amsData),
+                    datasets: [{ data: Object.values(amsData), backgroundColor: ['#3B82F6', '#10B981', '#EF4444', '#F59E0B'] }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' } } }
+            });
+
+            const sourcingData = {};
+            processedData.forEach(d => sourcingData[d.sourcing] = (sourcingData[d.sourcing] || 0) + 1);
+            new Chart(document.getElementById('sourcingChart').getContext('2d'), {
+                type: 'pie',
+                data: {
+                    labels: Object.keys(sourcingData),
+                    datasets: [{ data: Object.values(sourcingData), backgroundColor: ['#3B82F6', '#10B981', '#EF4444'] }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' } } }
+            });
+            
+            const schedulingData = {};
+            processedData.forEach(d => schedulingData[d.scheduling] = (schedulingData[d.scheduling] || 0) + 1);
+            new Chart(document.getElementById('schedulingChart').getContext('2d'), {
+                type: 'pie',
+                data: {
+                    labels: Object.keys(schedulingData),
+                    datasets: [{ data: Object.values(schedulingData), backgroundColor: ['#3B82F6', '#10B981', '#EF4444'] }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' } } }
+            });
+        };
     </script>
 
 </body>
