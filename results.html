@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Sub Coverage Scheduling: Survey Results</title>
+    <title>Analysis of Substitute Coverage Process Survey</title>
     
     <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Chart.js for interactive charts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
     
     <!-- Google Fonts for better typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,12 +21,21 @@
         /* Use the Inter font family */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* A light gray background */
+            background-color: #f3f4f6; /* A slightly darker gray background */
         }
         .chart-container {
             position: relative;
             height: 400px;
             width: 100%;
+        }
+        /* Custom styles for active button */
+        .btn-active {
+            background-color: #3b82f6;
+            color: white;
+        }
+        .btn-inactive {
+            background-color: #e5e7eb;
+            color: #374151;
         }
     </style>
 </head>
@@ -36,80 +46,54 @@
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             <h1 class="text-3xl font-bold leading-tight text-gray-900">Sub Coverage Scheduling Survey Results</h1>
             <p class="mt-2 text-md text-gray-600">An analysis of key trends in daily sub coverage scheduling practices.</p>
-            <p class="text-sm font-bold leading-tight text-gray-900">Based on 41 responses. Results are not live. Last updated 8/14/2025</p>
+            <p class="text-sm font-bold leading-tight text-gray-900">Based on 43 responses. Last updated 8/16/2025</p>
                 <a href="https://beerspitnight.github.io/sub_scheduling_survey/" style="color: blue; text-decoration: underline;" >Access the Survey</a>
         </div>
     </header>
 
     <!-- Main Content Section -->
     <main class="py-10">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-16">
 
-            <!-- Section 1: Deep Dive on Time to Complete Coverage -->
+            <!-- Section 1: Main Interactive Chart -->
             <section>
-                <div class="text-center mb-8">
-                    <h2 class="text-2xl font-bold text-gray-900">Deep Dive: Time to Complete Substitute Coverage</h2>
-                    <p class="mt-1 text-gray-600">Analyzing the average time on Tuesdays and Fridays, broken down by key operational factors.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <div class="flex flex-col sm:flex-row justify-between items-center mb-4">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2 sm:mb-0">Coverage Time Breakdown</h3>
-                        <div class="flex items-center space-x-2">
-                            <label for="breakdownSelector" class="text-sm font-medium text-gray-700">Break down by:</label>
-                            <select id="breakdownSelector" class="rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                                <option value="ams" selected>Absence Management System</option>
-                                <option value="sourcing">Substitute Sourcing</option>
-                                <option value="level">School Level</option>
-                                <option value="scheduling">Scheduling Method</option>
-                            </select>
+                <div class="bg-white p-6 rounded-lg shadow-xl">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-900">What Factors Influence Coverage Time?</h2>
+                            <p class="mt-1 text-gray-600">Select a category below to see how it impacts the average time spent on coverage.</p>
+                        </div>
+                        <div id="filter-buttons" class="flex flex-wrap gap-2 mt-4 md:mt-0">
+                            <button data-filter="ams" class="btn-active px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200">System</button>
+                            <button data-filter="scheduling" class="btn-inactive px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200">Scheduling</button>
+                            <button data-filter="level" class="btn-inactive px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200">School Level</button>
+                            <button data-filter="sourcing" class="btn-inactive px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200">Sourcing</button>
                         </div>
                     </div>
                     <div class="chart-container">
-                        <canvas id="breakdownChart"></canvas>
+                        <canvas id="mainBreakdownChart"></canvas>
                     </div>
                 </div>
             </section>
             
-            <!-- Section 2: Teacher Count vs. Time -->
+            <!-- Section 2: Teacher Count vs. Time Scatter Plots -->
             <section>
                  <div class="text-center mb-8">
-                    <h2 class="text-2xl font-bold text-gray-900">Teacher Count vs. Coverage Time</h2>
-                    <p class="mt-1 text-gray-600">Is there a relationship between the number of teachers and the time spent on coverage?</p>
+                    <h2 class="text-2xl font-bold text-gray-900">Does School Size Affect Efficiency?</h2>
+                    <p class="mt-1 text-gray-600">Visualizing the relationship between teacher count and coverage time.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="bg-white p-6 rounded-lg shadow-lg">
-                        <h3 class="text-xl font-bold mb-4 text-gray-900">Tuesday Coverage Time</h3>
+                        <h3 class="text-xl font-bold mb-4 text-gray-900">Tuesday Coverage Time vs. Teacher Count</h3>
                         <div class="chart-container">
                             <canvas id="tuesdayScatterChart"></canvas>
                         </div>
                     </div>
                     <div class="bg-white p-6 rounded-lg shadow-lg">
-                        <h3 class="text-xl font-bold mb-4 text-gray-900">Friday Coverage Time</h3>
+                        <h3 class="text-xl font-bold mb-4 text-gray-900">Friday Coverage Time vs. Teacher Count</h3>
                         <div class="chart-container">
                             <canvas id="fridayScatterChart"></canvas>
                         </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Section 3: Original Survey Overview -->
-            <section>
-                <div class="text-center mb-8">
-                    <h2 class="text-2xl font-bold text-gray-900">General Survey Overview</h2>
-                    <p class="mt-1 text-gray-600">High-level distribution of key operational methods.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                     <div class="bg-white p-6 rounded-lg shadow-lg">
-                        <h3 class="text-xl font-bold mb-4 text-gray-900">Absence Management Systems</h3>
-                        <canvas id="absenceSystemsChart"></canvas>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-lg">
-                        <h3 class="text-xl font-bold mb-4 text-gray-900">Substitute Sourcing</h3>
-                        <canvas id="sourcingChart"></canvas>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-lg">
-                        <h3 class="text-xl font-bold mb-4 text-gray-900">Scheduling Methods</h3>
-                        <canvas id="schedulingChart"></canvas>
                     </div>
                 </div>
             </section>
@@ -118,109 +102,78 @@
     </main>
 
     <!-- Footer Section -->
-    <footer class="bg-white mt-12">
-        <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 text-center text-gray-500">
-            <p>&copy; 2025 Survey Analysis. All rights reserved.</p>
+    <footer class="bg-white mt-16">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-gray-500">
+            <p>&copy; 2025 Survey Analysis. Data updated as of August 15, 2025.</p>
         </div>
     </footer>
 
     <script>
         // --- DATA PREPARATION ---
-        // Raw data manually transcribed from the CSV file.
-        const rawData = [
-            {ams: 'Genesis', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'External Service', teachers: 2, time_fri: '60', time_tue: '30 minutes'},
-            {ams: null, scheduling: 'Combination', level: 'Middle', sourcing: 'District Pool', teachers: 40, time_fri: '1.5 hours', time_tue: '50 minutes'},
-            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 225, time_fri: '15 minutes', time_tue: '15 minutes'},
-            {ams: 'AESOP', scheduling: 'Spreadsheet', level: 'Middle', sourcing: 'District Pool', teachers: 85, time_fri: '45 minutes', time_tue: '30 minutes'},
-            {ams: 'Frontline', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 30, time_fri: '1 hour', time_tue: '35 minutes'},
-            {ams: 'AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'External Service', teachers: 50, time_fri: '1.25 hours', time_tue: '1 hour'},
-            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 180, time_fri: '25 minutes', time_tue: '20 minutes'},
-            {ams: 'Frontline', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 48, time_fri: '1 hour', time_tue: '40 minutes'},
-            {ams: 'AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'External Service', teachers: 70, time_fri: '1.25 hours', time_tue: '1 hour'},
-            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 160, time_fri: '25 minutes', time_tue: '20 minutes'},
-            {ams: 'Frontline', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 52, time_fri: '1 hour', time_tue: '35 minutes'},
-            {ams: 'AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'External Service', teachers: 68, time_fri: '1.25 hours', time_tue: '1 hour'},
-            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 150, time_fri: '25 minutes', time_tue: '20 minutes'},
-            {ams: 'Frontline', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 46, time_fri: '1 hour', time_tue: '35 minutes'},
-            {ams: 'AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'External Service', teachers: 64, time_fri: '1 hour', time_tue: '55 minutes'},
-            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 145, time_fri: '25 minutes', time_tue: '20 minutes'},
-            {ams: 'Frontline', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 44, time_fri: '1 hour', time_tue: '35 minutes'},
-            {ams: 'AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'External Service', teachers: 62, time_fri: '1 hour', time_tue: '55 minutes'},
-            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 140, time_fri: '25 minutes', time_tue: '20 minutes'},
-            {ams: 'Frontline', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 42, time_fri: '1 hour', time_tue: '35 minutes'},
-            {ams: 'AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'External Service', teachers: 61, time_fri: '1 hour', time_tue: '55 minutes'},
-            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 138, time_fri: '25 minutes', time_tue: '20 minutes'},
-            {ams: 'Frontline', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 43, time_fri: '45 minutes', time_tue: '35 minutes'},
-            {ams: 'AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'External Service', teachers: 60, time_fri: '1 hour', time_tue: '55 minutes'},
-            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 190, time_fri: '50 minutes', time_tue: '45 minutes'},
-            {ams: 'Frontline', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 54, time_fri: '45 minutes', time_tue: '35 minutes'},
-            {ams: 'AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'District Pool', teachers: 74, time_fri: '1 hour', time_tue: '55 minutes'},
-            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 1700, time_fri: '55 minutes', time_tue: '50 minutes'},
-            {ams: 'Frontline', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 56, time_fri: '45 minutes', time_tue: '35 minutes'},
-            {ams: 'AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'District Pool', teachers: 76, time_fri: '1 hour', time_tue: '55 minutes'},
-            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 1650, time_fri: '2 hours', time_tue: '1 hour'},
-            {ams: 'Frontline', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 58, time_fri: '45 minutes', time_tue: '35 minutes'},
-            {ams: 'AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'District Pool', teachers: 78, time_fri: '1 hour', time_tue: '55 minutes'},
-            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 1750, time_fri: '25 minutes', time_tue: '20 minutes'},
-            {ams: 'Frontline', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 41, time_fri: '45 minutes', time_tue: '35 minutes'},
-            {ams: 'AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'District Pool', teachers: 59, time_fri: '1 hour', time_tue: '55 minutes'},
-            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 1550, time_fri: '25 minutes', time_tue: '20 minutes'},
-            {ams: 'Frontline', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 40, time_fri: '45 minutes', time_tue: '35 minutes'},
-            {ams: 'AESOP', scheduling: 'Pen and Paper', level: 'Middle', sourcing: 'External Service', teachers: 58, time_fri: '1 hour', time_tue: '55 minutes'},
-            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 128, time_fri: '25 minutes', time_tue: '25 minutes'},
-            {ams: 'Frontline', scheduling: 'Combination', level: 'K-12', sourcing: 'District Pool', teachers: 95, time_fri: '20 minutes', time_tue: '20 minutes'}
+        // This section contains all 45 survey responses, cleaned and ready for visualization.
+        const surveyData = [
+            {ams: 'Genesis', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'External Service', teachers: 2, time_fri: 60, time_tue: 30},
+            {ams: 'Other/Unknown', scheduling: 'Combination', level: 'Middle', sourcing: 'District Pool', teachers: 40, time_fri: 90, time_tue: 50},
+            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 225, time_fri: 15, time_tue: 15},
+            {ams: 'Frontline/AESOP', scheduling: 'Spreadsheet', level: 'Middle', sourcing: 'District Pool', teachers: 85, time_fri: 45, time_tue: 30},
+            {ams: 'Frontline/AESOP', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'External Service', teachers: 30, time_fri: 60, time_tue: 35},
+            {ams: 'Frontline/AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'External Service', teachers: 50, time_fri: 75, time_tue: 60},
+            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 180, time_fri: 25, time_tue: 20},
+            {ams: 'Frontline/AESOP', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 48, time_fri: 60, time_tue: 40},
+            {ams: 'Frontline/AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'External Service', teachers: 70, time_fri: 75, time_tue: 60},
+            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 160, time_fri: 25, time_tue: 20},
+            {ams: 'Frontline/AESOP', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 52, time_fri: 60, time_tue: 35},
+            {ams: 'Frontline/AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'External Service', teachers: 68, time_fri: 75, time_tue: 60},
+            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 150, time_fri: 25, time_tue: 20},
+            {ams: 'Frontline/AESOP', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 46, time_fri: 60, time_tue: 35},
+            {ams: 'Frontline/AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'External Service', teachers: 64, time_fri: 60, time_tue: 55},
+            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 145, time_fri: 25, time_tue: 20},
+            {ams: 'Frontline/AESOP', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 44, time_fri: 60, time_tue: 35},
+            {ams: 'Frontline/AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'External Service', teachers: 62, time_fri: 60, time_tue: 55},
+            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 140, time_fri: 25, time_tue: 20},
+            {ams: 'Frontline/AESOP', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 42, time_fri: 60, time_tue: 35},
+            {ams: 'Frontline/AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'External Service', teachers: 61, time_fri: 60, time_tue: 55},
+            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 138, time_fri: 25, time_tue: 20},
+            {ams: 'Frontline/AESOP', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 43, time_fri: 45, time_tue: 35},
+            {ams: 'Frontline/AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'External Service', teachers: 60, time_fri: 60, time_tue: 55},
+            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 190, time_fri: 50, time_tue: 45},
+            {ams: 'Frontline/AESOP', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 54, time_fri: 45, time_tue: 35},
+            {ams: 'Frontline/AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'District Pool', teachers: 74, time_fri: 60, time_tue: 55},
+            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 1700, time_fri: 55, time_tue: 50},
+            {ams: 'Frontline/AESOP', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 56, time_fri: 45, time_tue: 35},
+            {ams: 'Frontline/AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'District Pool', teachers: 76, time_fri: 60, time_tue: 55},
+            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 1650, time_fri: 120, time_tue: 60},
+            {ams: 'Frontline/AESOP', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 58, time_fri: 45, time_tue: 35},
+            {ams: 'Frontline/AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'District Pool', teachers: 78, time_fri: 60, time_tue: 55},
+            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 1750, time_fri: 25, time_tue: 20},
+            {ams: 'Frontline/AESOP', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 41, time_fri: 45, time_tue: 35},
+            {ams: 'Frontline/AESOP', scheduling: 'Combination', level: 'Middle', sourcing: 'District Pool', teachers: 59, time_fri: 60, time_tue: 55},
+            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 1550, time_fri: 25, time_tue: 20},
+            {ams: 'Frontline/AESOP', scheduling: 'Pen and Paper', level: 'Elementary', sourcing: 'District Pool', teachers: 40, time_fri: 45, time_tue: 35},
+            {ams: 'Frontline/AESOP', scheduling: 'Pen and Paper', level: 'Middle', sourcing: 'External Service', teachers: 58, time_fri: 60, time_tue: 55},
+            {ams: 'SmartFind Express', scheduling: 'Spreadsheet', level: 'High', sourcing: 'District Pool', teachers: 128, time_fri: 25, time_tue: 25},
+            {ams: 'Frontline/AESOP', scheduling: 'Combination', level: 'K-12', sourcing: 'District Pool', teachers: 95, time_fri: 20, time_tue: 20},
+            {ams: 'Frontline/AESOP', scheduling: 'Combination', level: 'High', sourcing: 'District Pool', teachers: 220, time_fri: 45, time_tue: 45},
+            {ams: 'Frontline/AESOP', scheduling: 'Spreadsheet', level: 'Middle', sourcing: 'District Pool', teachers: 60, time_fri: 20, time_tue: 10},
+            {ams: 'Frontline/AESOP', scheduling: 'Pen and Paper', level: 'High', sourcing: 'District Pool', teachers: 25, time_fri: 15, time_tue: 10},
+            {ams: 'Frontline/AESOP', scheduling: 'SIS Feature', level: 'Middle', sourcing: 'District Pool', teachers: 100, time_fri: 44, time_tue: 30}
         ];
 
-        // Helper function to parse time strings (e.g., "1.5 hours", "30 minutes") into minutes
-        function parseTime(timeStr) {
-            if (!timeStr || typeof timeStr !== 'string') return null;
-            const time = timeStr.toLowerCase();
-            let minutes = 0;
-            if (time.includes('hour')) {
-                minutes = parseFloat(time.replace('hours', '').replace('hour', '').trim()) * 60;
-            } else if (time.includes('minute')) {
-                minutes = parseFloat(time.replace('minutes', '').replace('minute', '').trim());
-            } else {
-                minutes = parseFloat(time);
-            }
-            return isNaN(minutes) ? null : minutes;
-        }
-
-        // Clean and process the raw data
-        const processedData = rawData.map(d => {
-            // Combine "Frontline" and "AESOP" as they are the same system
-            let system = d.ams;
-            if (system === 'Frontline' || system === 'AESOP') {
-                system = 'Frontline/AESOP';
-            }
-            
-            return {
-                ams: system || 'Other/Unknown',
-                scheduling: d.scheduling || 'Unknown',
-                level: d.level || 'Unknown',
-                sourcing: d.sourcing || 'Unknown',
-                teachers: parseInt(d.teachers),
-                time_fri: parseTime(d.time_fri),
-                time_tue: parseTime(d.time_tue)
-            };
-        }).filter(d => d.time_tue !== null && d.time_fri !== null && !isNaN(d.teachers)); // Filter out any rows with missing essential data
-
+        // --- CHART RENDERING LOGIC ---
         
-        // --- CHART RENDERING ---
-        
-        // A global variable to hold the breakdown chart instance so we can destroy it before redrawing
-        let breakdownChartInstance = null;
+        let mainChartInstance = null;
         
         // Function to calculate average times for a given category (e.g., 'ams', 'level')
-        function calculateAverages(category) {
+        const calculateAverages = (category) => {
             const groups = {};
-            processedData.forEach(d => {
+            surveyData.forEach(d => {
                 const key = d[category];
                 if (!groups[key]) {
-                    groups[key] = { tue: [], fri: [] };
+                    groups[key] = { tue: [], fri: [], count: 0 };
                 }
                 groups[key].tue.push(d.time_tue);
                 groups[key].fri.push(d.time_fri);
+                groups[key].count++;
             });
 
             const labels = Object.keys(groups).sort();
@@ -232,35 +185,36 @@
                 const sum = groups[label].fri.reduce((a, b) => a + b, 0);
                 return sum / groups[label].fri.length;
             });
+            const counts = labels.map(label => groups[label].count);
 
-            return { labels, avgTue, avgFri };
-        }
+            return { labels, avgTue, avgFri, counts };
+        };
 
         // Function to update the main breakdown chart
-        function updateBreakdownChart(category) {
-            const { labels, avgTue, avgFri } = calculateAverages(category);
-            const ctx = document.getElementById('breakdownChart').getContext('2d');
+        const updateMainChart = (category) => {
+            const { labels, avgTue, avgFri, counts } = calculateAverages(category);
+            const ctx = document.getElementById('mainBreakdownChart').getContext('2d');
 
-            if (breakdownChartInstance) {
-                breakdownChartInstance.destroy();
+            if (mainChartInstance) {
+                mainChartInstance.destroy();
             }
 
-            breakdownChartInstance = new Chart(ctx, {
+            mainChartInstance = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: labels,
+                    labels: labels.map((label, i) => `${label} (n=${counts[i]})`), // Add sample size to labels
                     datasets: [
                         {
                             label: 'Avg Time Tuesday (min)',
                             data: avgTue,
-                            backgroundColor: 'rgba(59, 130, 246, 0.8)',
+                            backgroundColor: 'rgba(59, 130, 246, 0.7)',
                             borderColor: 'rgba(59, 130, 246, 1)',
                             borderWidth: 1
                         },
                         {
                             label: 'Avg Time Friday (min)',
                             data: avgFri,
-                            backgroundColor: 'rgba(16, 185, 129, 0.8)',
+                            backgroundColor: 'rgba(16, 185, 129, 0.7)',
                             borderColor: 'rgba(16, 185, 129, 1)',
                             borderWidth: 1
                         }
@@ -272,32 +226,38 @@
                     scales: {
                         y: {
                             beginAtZero: true,
-                            title: { display: true, text: 'Average Minutes' }
+                            title: { display: true, text: 'Average Minutes to Complete Coverage' }
                         }
                     },
                     plugins: {
                         tooltip: {
                             callbacks: {
-                                label: function(context) {
-                                    return `${context.dataset.label}: ${context.parsed.y.toFixed(1)} min`;
-                                }
+                                label: (context) => `${context.dataset.label}: ${context.parsed.y.toFixed(1)} min`
                             }
                         }
                     }
                 }
             });
-        }
+        };
 
-        // --- Initial Chart Drawing on Page Load ---
-        window.onload = () => {
-            // Attach event listener to the dropdown
-            const breakdownSelector = document.getElementById('breakdownSelector');
-            breakdownSelector.addEventListener('change', (e) => {
-                updateBreakdownChart(e.target.value);
+        // --- PAGE INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Setup filter button interactivity
+            const filterButtons = document.querySelectorAll('#filter-buttons button');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('btn-active');
+                        btn.classList.add('btn-inactive');
+                    });
+                    button.classList.add('btn-active');
+                    button.classList.remove('btn-inactive');
+                    updateMainChart(button.dataset.filter);
+                });
             });
 
-            // Initial call to draw the breakdown chart
-            updateBreakdownChart('ams');
+            // Initial call to draw the main chart
+            updateMainChart('ams');
 
             // --- Scatter Plot: Tuesday ---
             const tueScatterCtx = document.getElementById('tuesdayScatterChart').getContext('2d');
@@ -306,8 +266,8 @@
                 data: {
                     datasets: [{
                         label: 'Tuesday Data',
-                        data: processedData.map(d => ({x: d.teachers, y: d.time_tue})),
-                        backgroundColor: 'rgba(59, 130, 246, 0.8)'
+                        data: surveyData.map(d => ({x: d.teachers, y: d.time_tue})),
+                        backgroundColor: 'rgba(59, 130, 246, 0.7)'
                     }]
                 },
                 options: {
@@ -317,9 +277,7 @@
                         x: { title: { display: true, text: 'Number of Teachers' } },
                         y: { title: { display: true, text: 'Time in Minutes' } }
                     },
-                    plugins: {
-                        legend: { display: false }
-                    }
+                    plugins: { legend: { display: false } }
                 }
             });
 
@@ -330,8 +288,8 @@
                 data: {
                     datasets: [{
                         label: 'Friday Data',
-                        data: processedData.map(d => ({x: d.teachers, y: d.time_fri})),
-                        backgroundColor: 'rgba(16, 185, 129, 0.8)'
+                        data: surveyData.map(d => ({x: d.teachers, y: d.time_fri})),
+                        backgroundColor: 'rgba(16, 185, 129, 0.7)'
                     }]
                 },
                 options: {
@@ -341,47 +299,10 @@
                         x: { title: { display: true, text: 'Number of Teachers' } },
                         y: { title: { display: true, text: 'Time in Minutes' } }
                     },
-                    plugins: {
-                        legend: { display: false }
-                    }
+                    plugins: { legend: { display: false } }
                 }
             });
-            
-            // --- Original Overview Charts ---
-            const { labels: amsLabels, avgTue: amsCounts } = calculateAverages('ams');
-            const amsData = {};
-            processedData.forEach(d => amsData[d.ams] = (amsData[d.ams] || 0) + 1);
-            new Chart(document.getElementById('absenceSystemsChart').getContext('2d'), {
-                type: 'doughnut',
-                data: {
-                    labels: Object.keys(amsData),
-                    datasets: [{ data: Object.values(amsData), backgroundColor: ['#3B82F6', '#10B981', '#EF4444', '#F59E0B'] }]
-                },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' } } }
-            });
-
-            const sourcingData = {};
-            processedData.forEach(d => sourcingData[d.sourcing] = (sourcingData[d.sourcing] || 0) + 1);
-            new Chart(document.getElementById('sourcingChart').getContext('2d'), {
-                type: 'pie',
-                data: {
-                    labels: Object.keys(sourcingData),
-                    datasets: [{ data: Object.values(sourcingData), backgroundColor: ['#3B82F6', '#10B981', '#EF4444'] }]
-                },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' } } }
-            });
-            
-            const schedulingData = {};
-            processedData.forEach(d => schedulingData[d.scheduling] = (schedulingData[d.scheduling] || 0) + 1);
-            new Chart(document.getElementById('schedulingChart').getContext('2d'), {
-                type: 'pie',
-                data: {
-                    labels: Object.keys(schedulingData),
-                    datasets: [{ data: Object.values(schedulingData), backgroundColor: ['#3B82F6', '#10B981', '#EF4444'] }]
-                },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' } } }
-            });
-        };
+        });
     </script>
 
 </body>
